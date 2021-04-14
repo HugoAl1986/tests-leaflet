@@ -43,7 +43,7 @@ const App = () => {
           <ContainerVille>
             <Button onClick={changeCity} name="Los Angeles">Los Angeles</Button>
             <Button onClick={changeCity} name="Detroit">Detroit</Button>
-            <Button onClick={changeCity} name="Las Vegas"><a href="">Las Vegas</a></Button>
+            <Button onClick={changeCity} name="Las Vegas">Las Vegas</Button>
           </ContainerVille>  
           <MapContainer id="mapid" center={positionInitiale} zoom={8} scrollWheelZoom={false} whenCreated={map => setMap(map)}>
               <TileLayer
