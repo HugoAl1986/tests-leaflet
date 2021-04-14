@@ -6,3 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+#mapid{
+  width:70%;
+  height:300px;
+  border:solid 1px black;
+}
