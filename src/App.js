@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
 import PositionVille from './component/PositionVille';
-import { LatLng } from 'leaflet';
 
 const ContainerGlobal = styled.div`
 padding : 1rem;
@@ -26,7 +25,6 @@ background : transparent;
 width : auto;
 `;
 
-
 const App = () => {
   
   const [positionInitiale,setPositionInitiale] = useState([49.195184999999995, 2.043914]);
@@ -35,12 +33,9 @@ const App = () => {
   
   const changeCity = (e) => {
     const LatLng = PositionVille(e.currentTarget.name);
-    
       setPopupMessage("Bienvenue à "+e.currentTarget.name+ ' !')
-    
-    
-    setPositionInitiale(LatLng);
-    if (map) map.flyTo(LatLng,8);
+      setPositionInitiale(LatLng);
+      if (map) map.flyTo(LatLng,8);
   }
 
   return(
@@ -57,7 +52,6 @@ const App = () => {
               <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-
               />
               <Marker position={positionInitiale}>
                 <Popup>
@@ -68,6 +62,5 @@ const App = () => {
       </ContainerGlobal>
   ) 
 }
-
 
 export default App;
