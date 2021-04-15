@@ -8,6 +8,6 @@ body {
 }
 #mapid{
   width:70%;
-  height:300px;
+  height:100vh;
   border:solid 1px black;
 }
