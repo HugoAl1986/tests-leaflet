@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
 import CityPosition from './component/CityPosition';
 import * as data from './cities.json';
+import Pagination from './component/Pagination';
 
-const ContainerGlobal = styled.div`
+const GeneralContainer = styled.div`
 padding : 1rem;
 display : flex;
 border : solid 1px black
 `;
 
-const ContainerVille = styled.div`
+const CityContainer = styled.div`
 display : flex;
 flex-direction : column;
 padding : 1rem;
@@ -19,8 +20,8 @@ border : solid 1px black;
 width : 30%;
 `;
 const Button = styled.button`
-margin : 1rem 0;
-padding : 1rem 0.5rem;
+margin : 0.1rem 0;
+padding : 0.1rem 0.5rem;
 border : solid 1px grey;
 background : transparent;
 width : auto;
@@ -31,7 +32,7 @@ const App = () => {
   const [position,setPosition] = useState([49.195184999999995, 2.043914]);
   const [map, setMap] = useState(null);
   const [popupMessage, setPopupMessage]=useState("Bienvenue à Henonville !")
-  const [city, setCity] = useState(data.default);
+  const [city, setCity] = useState(data.default.slice(0,100));
  
   
   const changeCity = (e) => {
@@ -40,15 +41,14 @@ const App = () => {
       setPosition(LatLng);
       if (map) map.flyTo(LatLng,8);
   }
-
-  console.log(typeof data.default)
   return(
-      <ContainerGlobal> 
-          <ContainerVille>
-            { city.map((newdata) =>     
+      <GeneralContainer> 
+          <CityContainer>
+            {city.map((newdata) => 
                 <Button key={newdata.rank} onClick ={changeCity} name={newdata.city}>{newdata.city}</Button>                       
             )}
-          </ContainerVille>  
+          <Pagination datasCity={city} setDatasCity={setCity} /> 
+          </CityContainer>  
           <MapContainer id="mapid" center={position} zoom={8} scrollWheelZoom={false} whenCreated={map => setMap(map)}>
               <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -60,7 +60,7 @@ const App = () => {
                 </Popup>
               </Marker>
           </MapContainer>
-      </ContainerGlobal>
+      </GeneralContainer>
   ) 
 }
 
